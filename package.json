@@ -1,0 +1,13 @@
+{
+    "name": "gearman",
+    "version": "0.0.0",
+    "description": "Client and worker libraries for Gearman",
+    "keywords": ["gearman", "job", "worker", "background"],
+    "homepage": "https://github.com/cramerdev/gearman-node",
+    "author": "Nathan L Smith <gearman@gearmanhq.com>",
+    "main": "lib/gearman",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cramerdev/gearman-node.git"
+    }
+}
