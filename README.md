@@ -12,11 +12,11 @@ This module lets you create [Gearman](http://gearman.org/) clients and workers w
 
 Creating a client goes something like this:
 
-    var Client = require("gearman").Client,
-        myClient = new Client(["my-gearman-server.example.com:4730",
+    var gearman = require("gearman"),
+        myClient = gearman.createClient(["my-gearman-server.example.com:4730",
                                "another-gearman-server.example.com:4730"]);
     console.log("Sending job...");
-    var task = myClient.do("reverse", "Hello World!");
+    var task = myClient.doTask("reverse", "Hello World!");
     task.on("result", function (result) {
         console.log(result);
     });
@@ -32,8 +32,8 @@ You can run this on the command line like so:
 
 Create a worker like this:
 
-    var Worker = require("gearman").Worker,
-        myWorker = new Worker([ /* ...servers ... */]);
+    var gearman = require("gearman"),
+        myWorker = gearman.createWorker([ /* ...servers ... */]);
 
     myWorker.addAbility("reverse", function (data, job) {
         console.log("Received job: " + job.handle);
