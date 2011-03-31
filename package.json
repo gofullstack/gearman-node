@@ -9,5 +9,6 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/cramerdev/gearman-node.git"
-    }
+    },
+    "devDependencies": { "nodeunit": "~0.4" }
 }
