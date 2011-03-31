@@ -59,6 +59,16 @@ Additional Gearman tutorials and help can be found at http://gearmanhq.com/help/
 
 ### Worker
 
+## Tests
+
+To run the tests:
+
+    $ npm link
+
+This will set up [nodeunit](https://github.com/caolan/nodeunit).
+
+    $ nodeunit test
+
 ## Node Compatibility
 
 Should be compatible with node 0.4.x.
