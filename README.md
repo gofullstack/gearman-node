@@ -13,9 +13,10 @@ This module lets you create [Gearman](http://gearman.org/) clients and workers w
 Creating a client goes something like this:
 
     var Client = require("gearman").Client,
-        myClient = new Client(["my-gearman-server.example.com:4730", "another-gearman-server.example.com:4730"]);
+        myClient = new Client(["my-gearman-server.example.com:4730",
+                               "another-gearman-server.example.com:4730"]);
     console.log("Sending job...");
-    var task = myClient.doTask("reverse", "Hello World!");
+    var task = myClient.do("reverse", "Hello World!");
     task.on("result", function (result) {
         console.log(result);
     });
@@ -24,18 +25,19 @@ This creates a client with a task and a listener for the result.
 
 You can run this on the command line like so:
 
-    $ node reverse_do.js
+    $ node reverse-client.js
     Sending job...
 
 ### Workers
 
-We can create a worker like this:
+Create a worker like this:
 
     var Worker = require("gearman").Worker,
         myWorker = new Worker([ /* ...servers ... */]);
 
     myWorker.addAbility("reverse", function (data, job) {
         console.log("Received job: " + job.handle);
+        // Reverse a string
         return String(data).split("").reverse().join("");
     });
 
@@ -43,7 +45,7 @@ We can create a worker like this:
 
 Run it with:
 
-    $ node reverse_worker.js
+    $ node reverse-worker.js
 
 This worker will connect to the server and receive and do work until the process is terminated.
 
@@ -60,6 +62,12 @@ Additional Gearman tutorials and help can be found at http://gearmanhq.com/help/
 ## Node Compatibility
 
 Should be compatible with node 0.4.x.
+
+## Contributors
+
+Thanks to the Gearman community and rest of the [Gearman HQ](http://gearmanhq.com/) team for help and documentation. This module is mostly based on [gearman-ruby](https://github.com/gearman-ruby/gearman-ruby).
+
+Thanks to the Node.js community for excellent tools, resources, examples, documentation, and inspiration.
 
 ## License
 
