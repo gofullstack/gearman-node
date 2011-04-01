@@ -52,7 +52,7 @@ Submits a job to a manager and returns a `gearman.Job`. `data` defaults to a `Bu
 
 ### gearman.Job
 
-An object representing a job that has been submitted.
+An object representing a job that has been submitted. `gearman.Job` instances are EventEmitters.
 
 ## Tests
 
