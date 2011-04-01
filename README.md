@@ -1,6 +1,6 @@
 # gearman-node
 
-This module lets you create [Gearman](http://gearman.org/) clients and workers with [Node.js](http://nodejs.org/).
+This module lets you create [Gearman](http://gearman.org/) clients with [Node.js](http://nodejs.org/).
 
 ## Installation
 
@@ -28,27 +28,6 @@ You can run this on the command line like so:
     $ node reverse-client.js
     Sending job...
 
-### Workers
-
-Create a worker like this:
-
-    var gearman = require("gearman"),
-        myWorker = gearman.createWorker([ /* ...servers ... */]);
-
-    myWorker.addAbility("reverse", function (data, job) {
-        console.log("Received job: " + job.handle);
-        // Reverse a string
-        return String(data).split("").reverse().join("");
-    });
-
-    myWorker.work();
-
-Run it with:
-
-    $ node reverse-worker.js
-
-This worker will connect to the server and receive and do work until the process is terminated.
-
 ### More
 
 Additional Gearman tutorials and help can be found at http://gearmanhq.com/help/tutorials/.
@@ -56,8 +35,6 @@ Additional Gearman tutorials and help can be found at http://gearmanhq.com/help/
 ## API
 
 ### Client
-
-### Worker
 
 ## Tests
 
