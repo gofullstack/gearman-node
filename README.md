@@ -36,7 +36,23 @@ Additional Gearman tutorials and help can be found at http://gearmanhq.com/help/
 
 ## API
 
-### Client
+The gearman module contains methods for creating clients. You can include this module with `require("gearman")`
+
+### gearman.createClient([managers = ["localhost:4730"]])
+
+Creates a new Gearman client. The managers argument can be a String or Array of Strings with `host:port` pairs representing the server connections that will be available to this client.
+
+### gearman.Client
+
+This is an object with methods to create and manage jobs.
+
+#### client.submitJob(name, [data], [encoding])
+
+Submits a job to a manager and returns a `gearman.Job`. `data` defaults to a `Buffer`, but can be a String if `encoding` is set to `'ascii'`, `'utf8'`, or `'base64`'.
+
+### gearman.Job
+
+An object representing a job that has been submitted.
 
 ## Tests
 
