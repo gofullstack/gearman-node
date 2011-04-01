@@ -18,8 +18,8 @@ Creating a client goes something like this:
         myClient = gearman.createClient(["my-gearman-server.example.com:4730",
                                "another-gearman-server.example.com:4730"]);
     console.log("Sending job...");
-    var task = myClient.doTask("reverse", "Hello World!");
-    task.on("result", function (result) {
+    var job = myClient.submitJob("reverse", "Hello World!");
+    job.on("complete", function (result) {
         console.log(result);
     });
 
