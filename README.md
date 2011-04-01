@@ -18,7 +18,7 @@ Creating a client goes something like this:
         myClient = gearman.createClient(["my-gearman-server.example.com:4730",
                                "another-gearman-server.example.com:4730"]);
     console.log("Sending job...");
-    var job = myClient.submitJob("reverse", "Hello World!");
+    var job = myClient.submitJob("reverse", "Hello World!", "utf8");
     job.on("complete", function (result) {
         console.log(result);
     });
@@ -29,14 +29,15 @@ You can run this on the command line like so:
 
     $ node reverse-client.js
     Sending job...
+    !dlroW olleH
 
 ### More
 
-Additional Gearman tutorials and help can be found at http://gearmanhq.com/help/tutorials/.
+Additional Gearman tutorials and help can be found at [Gearman HQ help](http://gearmanhq.com/help/tutorials/).
 
 ## API
 
-The gearman module contains methods for creating clients. You can include this module with `require("gearman")`
+The gearman module contains methods for creating clients. You can include this module with `require("gearman")`.
 
 ### gearman.createClient([managers = ["localhost:4730"]])
 
@@ -48,7 +49,7 @@ This is an object with methods to create and manage jobs.
 
 #### client.submitJob(name, [data], [encoding])
 
-Submits a job to a manager and returns a `gearman.Job`. `data` defaults to a `Buffer`, but can be a String if `encoding` is set to `'ascii'`, `'utf8'`, or `'base64`'.
+Submits a job to a manager and returns a `gearman.Job`. `data` defaults to a `Buffer`, but can be a String if `encoding` is set to `'ascii'`, `'utf8'`, or `'base64'`.
 
 ### gearman.Job
 
@@ -58,9 +59,11 @@ An object representing a job that has been submitted. `gearman.Job` instances ar
 
 To run the tests:
 
+Set up [nodeunit](https://github.com/caolan/nodeunit):
+
     $ npm link
 
-This will set up [nodeunit](https://github.com/caolan/nodeunit).
+Run the tests:
 
     $ nodeunit test
 
