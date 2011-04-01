@@ -2,6 +2,8 @@
 
 This module lets you create [Gearman](http://gearman.org/) clients with [Node.js](http://nodejs.org/).
 
+Only a subset of the features of Gearman are currently implemented.
+
 ## Installation
 
     $ npm install gearman
@@ -52,7 +54,7 @@ Should be compatible with node 0.4.x.
 
 ## Contributors
 
-Thanks to the Gearman community and rest of the [Gearman HQ](http://gearmanhq.com/) team for help and documentation. This module is mostly based on [gearman-ruby](https://github.com/gearman-ruby/gearman-ruby).
+Thanks to the Gearman community and rest of the [Gearman HQ](http://gearmanhq.com/) team for help and documentation. This module is mostly based on [gearman-ruby](https://github.com/gearman-ruby/gearman-ruby) and [gearman.net](https://launchpad.net/gearman.net).
 
 Thanks to the Node.js community for excellent tools, resources, examples, documentation, and inspiration.
 
