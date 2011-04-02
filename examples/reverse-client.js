@@ -3,7 +3,7 @@ var gearman = require("gearman"),
     job;
 
 console.log("Sending job...");
-job = myClient.submitJob("reverse", "Hello World!", "utf8");
-job.on("complete", function (result) {
+job = myClient.submitJob("reverse", "Hello World!", { encoding: "utf8" });
+job.on("complete", function (result, handle) {
     console.log(result);
 });

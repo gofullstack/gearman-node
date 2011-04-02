@@ -16,11 +16,13 @@ Creating a client goes something like this:
 
     var gearman = require("gearman"),
         myClient = gearman.createClient(["my-gearman-server.example.com:4730",
-                               "another-gearman-server.example.com:4730"]);
+                                         "another-gearman-server.example.com:4730"]);
     console.log("Sending job...");
-    var job = myClient.submitJob("reverse", "Hello World!", "utf8");
-    job.on("complete", function (result) {
-        console.log(result);
+    var job = myClient.submitJob("reverse", "Hello World!", {
+        encoding: "utf8"
+    });
+    job.on("complete", function (data, handle) {
+        console.log(data);
     });
 
 This creates a client with a task and a listener for the result.
@@ -47,9 +49,14 @@ Creates a new Gearman client. The managers argument can be a String or Array of 
 
 This is an object with methods to create and manage jobs.
 
-#### client.submitJob(name, [data], [encoding])
+#### client.submitJob(name, [data], [options])
 
-Submits a job to a manager and returns a `gearman.Job`. `data` defaults to a `Buffer`, but can be a String if `encoding` is set to `'ascii'`, `'utf8'`, or `'base64'`.
+Submits a job to a manager and returns a `gearman.Job`. `data` defaults to a `Buffer`, but can be a String if the `encoding` option is set to `'ascii'`, `'utf8'`, or `'base64'`.
+
+`options` is an object with the following defaults:
+
+    { encoding: null
+    }
 
 ### gearman.Job
 
