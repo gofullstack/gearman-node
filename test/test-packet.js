@@ -31,11 +31,19 @@ exports["encode SUBMIT_JOB"] = function (test) {
 exports["decode"] = function (test) {
     var headerOnly = new Buffer([0, 0x52, 0x45, 0x53]),
         withType =  new Buffer([0, 0x52, 0x45, 0x53, 0, 0, 0, 0x08]);
+        withTypeAndSize =  new Buffer([0, 0x52, 0x45, 0x53, 0, 0, 0, 0x08, 0, 0, 0, 0]);
     test.ok(typeof packet.decode === "function", "is a function");
-    test.ok(typeof packet.decode(withType) === "object", "returns an object");
+    test.ok(typeof packet.decode(withTypeAndSize) === "object", "returns an object");
     test.throws(function () { packet.decode(); }, "input must be a Buffer");
     test.throws(function () { packet.decode(new Buffer(0)); }, "must have a valid header");
     test.throws(function () { packet.decode(headerOnly); }, "must have a valid type");
+    test.throws(function () { packet.decode(withType); }, "must have a valid packet length");
+    test.deepEqual(packet.decode(withTypeAndSize), { type: "JOB_CREATED", handle: "" }, "most basic request");
     test.done();
 };
 
+exports["decode JOB_CREATED"] = function (test) {
+    var t = new Buffer([0, 0x52, 0x45, 0x53, 0, 0, 0, 0x08, 0, 0, 0, 0x04, 0x74,0x65,0x73,0x74]);
+    test.deepEqual(packet.decode(t), { type: "JOB_CREATED", handle: "test" }, "job created, handle 'test'");
+    test.done();
+};
