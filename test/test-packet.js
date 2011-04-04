@@ -16,10 +16,10 @@ exports["encode"] = function (test) {
 
 exports["encode SUBMIT_JOB"] = function (test) {
     // examples
-    // \0REQ-SUBMIT_JOB-5-test-\0/
-    var empty = new Buffer([0,0x52,0x45,0x51,0,0,0,0x7,0,0,0,0x5,0x74,0x65,0x73,0x74,0]),
-    // \0REQ-SUBMIT_JOB-6-test-\0-a/
-        data = new Buffer([0,0x52,0x45,0x51,0,0,0,0x7,0,0,0,0x6,0x74,0x65,0x73,0x74,0,0x61]);
+    // \0REQ-SUBMIT_JOB-5-test\0-\0/
+    var empty = new Buffer([0,0x52,0x45,0x51,0,0,0,0x7,0,0,0,0x6,0x74,0x65,0x73,0x74,0,0]),
+    // \0REQ-SUBMIT_JOB-6-test\0-\0-a/
+        data = new Buffer([0,0x52,0x45,0x51,0,0,0,0x7,0,0,0,0x7,0x74,0x65,0x73,0x74,0,0,0x61]);
 
     test.throws(function () { packet.encode({ type: "SUBMIT_JOB" }); }, "job must have a name string");
     test.deepEqual(packet.encode({ type: "SUBMIT_JOB", name: "test" }), empty);
