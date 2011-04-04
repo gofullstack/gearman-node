@@ -2,7 +2,8 @@ var packetTypes = require("../lib/packet-types"),
     packet = require("../lib/packet");
 
 exports["packet-types"] = function (test) {
-    test.equal(packetTypes.SUBMIT_JOB, 7, "packet types are loaded");
+    test.equal(packetTypes.names.SUBMIT_JOB, 7, "packet type names are loaded");
+    test.equal(packetTypes.numbers[7], "SUBMIT_JOB", "packet type numbers are loaded");
     test.done();
 };
 
@@ -28,11 +29,13 @@ exports["encode SUBMIT_JOB"] = function (test) {
 };
 
 exports["decode"] = function (test) {
-    var buf = new Buffer([0, 0x52, 0x45, 0x53]);
+    var headerOnly = new Buffer([0, 0x52, 0x45, 0x53]),
+        withType =  new Buffer([0, 0x52, 0x45, 0x53, 0, 0, 0, 0x08]);
     test.ok(typeof packet.decode === "function", "is a function");
-    test.ok(typeof packet.decode(buf) === "object", "returns an object");
+    test.ok(typeof packet.decode(withType) === "object", "returns an object");
     test.throws(function () { packet.decode(); }, "input must be a Buffer");
     test.throws(function () { packet.decode(new Buffer(0)); }, "must have a valid header");
+    test.throws(function () { packet.decode(headerOnly); }, "must have a valid type");
     test.done();
 };
 
