@@ -5,6 +5,14 @@ var gearman = require("gearman"),
 exports["createClient"] = function (test) {
     var client = gearman.createClient();
     test.ok(client instanceof Client, "gearman.createClient() creates a client");
+    test.equal(client.port, 4730, "default port 4730");
+    test.equal(client.host, "localhost", "default host 'localhost'");
+
+    client = gearman.createClient(1234, "test");
+console.dir(client);
+    test.equal(client.port, 1234, "port argument 1234");
+    test.equal(client.host, "test", "host argument 'test'");
+
     test.done();
 };
 
