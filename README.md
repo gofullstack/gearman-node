@@ -15,8 +15,8 @@ Only a subset of the features of Gearman are currently implemented.
 Creating a client goes something like this:
 
     var gearman = require("gearman"),
-        myClient = gearman.createClient(["my-gearman-server.example.com:4730",
-                                         "another-gearman-server.example.com:4730"]);
+        myClient = gearman.createClient(4730, "my-gearman-server.example.com");
+
     console.log("Sending job...");
     var job = myClient.submitJob("reverse", "Hello World!", {
         encoding: "utf8"
@@ -41,9 +41,9 @@ Additional Gearman tutorials and help can be found at [Gearman HQ help](http://g
 
 The gearman module contains methods for creating clients. You can include this module with `require("gearman")`.
 
-### gearman.createClient([managers = ["localhost:4730"]])
+### gearman.createClient([port = 4730], [host = "localhost"])
 
-Creates a new Gearman client. The managers argument can be a String or Array of Strings with `host:port` pairs representing the server connections that will be available to this client.
+Creates a new Gearman client. Takes `port` and `host` arguments which default to `localhost:4730`.
 
 ### gearman.Client
 
