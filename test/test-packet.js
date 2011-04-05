@@ -54,7 +54,14 @@ exports["decode JOB_CREATED"] = function (test) {
 
 exports["decode WORK_COMPLETE"] = function (test) {
         // \0RES-13-12-test-\0-test
-    var t = new Buffer([0, 0x52, 0x45, 0x53, 0, 0, 0, 0x0d, 0, 0, 0, 0x0c, 0x74,0x65,0x73,0x74,0,0x74,0x65,0x73,0x74]);
+    var t = new Buffer([0, 0x52, 0x45, 0x53, 0, 0, 0, 13, 0, 0, 0, 0x0c, 0x74,0x65,0x73,0x74,0,0x74,0x65,0x73,0x74]);
     test.deepEqual(packet.decode(t), { type: "WORK_COMPLETE", handle: "test", data: new Buffer([0x74, 0x65, 0x73, 0x74]) }, "work complete, handle 'test', data buffer");
+    test.done();
+};
+
+exports["decode WORK_DATA"] = function (test) {
+        // \0RES-28-12-test-\0-test
+    var t = new Buffer([0, 0x52, 0x45, 0x53, 0, 0, 0, 28, 0, 0, 0, 0x0c, 0x74,0x65,0x73,0x74,0,0x74,0x65,0x73,0x74]);
+    test.deepEqual(packet.decode(t), { type: "WORK_DATA", handle: "test", data: new Buffer([0x74, 0x65, 0x73, 0x74]) }, "work data, handle 'test', data buffer");
     test.done();
 };
