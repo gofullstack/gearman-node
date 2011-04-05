@@ -59,6 +59,13 @@ exports["decode WORK_COMPLETE"] = function (test) {
     test.done();
 };
 
+exports["decode WORK_FAIL"] = function (test) {
+        // \0RES-14-4-test
+    var t = new Buffer([0, 0x52, 0x45, 0x53, 0, 0, 0, 14, 0, 0, 0, 4, 0x74,0x65,0x73,0x74]);
+    test.deepEqual(packet.decode(t), { type: "WORK_FAIL", handle: "test" }, "work fail, handle 'test'");
+    test.done();
+};
+
 exports["decode WORK_EXCEPTION"] = function (test) {
         // \0RES-25-12-test-\0-test
     var t = new Buffer([0, 0x52, 0x45, 0x53, 0, 0, 0, 25, 0, 0, 0, 0x0c, 0x74,0x65,0x73,0x74,0,0x74,0x65,0x73,0x74]);
