@@ -9,7 +9,7 @@ exports["createClient"] = function (test) {
     test.equal(client.host, "localhost", "default host 'localhost'");
 
     client = gearman.createClient(1234, "test");
-console.dir(client);
+
     test.equal(client.port, 1234, "port argument 1234");
     test.equal(client.host, "test", "host argument 'test'");
 
@@ -19,5 +19,11 @@ console.dir(client);
 exports["submitJob"] = function (test) {
     var client = gearman.createClient();
     test.ok(client.submitJob() instanceof Job, "client.submitJob() creates a job");
+    test.done();
+};
+
+exports["end"] = function (test) {
+    var client = gearman.createClient();
+    test.ok(typeof client.end === "function", "client.end() method exists");
     test.done();
 };

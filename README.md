@@ -23,6 +23,7 @@ Creating a client goes something like this:
     });
     job.on("complete", function (data, handle) {
         console.log(data);
+        myClient.end();
     });
 
 This creates a client with a task and a listener for the result.
@@ -48,6 +49,10 @@ Creates a new Gearman client. Takes `port` and `host` arguments which default to
 ### gearman.Client
 
 This is an object with methods to create and manage jobs.
+
+#### client.end()
+
+Closes the client connections for when you don't need to use the client any more.
 
 #### client.submitJob(name, [data], [options])
 
