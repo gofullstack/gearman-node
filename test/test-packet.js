@@ -29,8 +29,11 @@ exports["encode SUBMIT_JOB"] = function (test) {
 };
 
 exports["decode"] = function (test) {
+        // \0RES
     var headerOnly = new Buffer([0, 0x52, 0x45, 0x53]),
+        // \0RES-8
         withType =  new Buffer([0, 0x52, 0x45, 0x53, 0, 0, 0, 0x08]);
+        // \0RES-8-0
         withTypeAndSize =  new Buffer([0, 0x52, 0x45, 0x53, 0, 0, 0, 0x08, 0, 0, 0, 0]);
     test.ok(typeof packet.decode === "function", "is a function");
     test.ok(typeof packet.decode(withTypeAndSize) === "object", "returns an object");
@@ -43,7 +46,15 @@ exports["decode"] = function (test) {
 };
 
 exports["decode JOB_CREATED"] = function (test) {
+        // \0RES-8-4-test
     var t = new Buffer([0, 0x52, 0x45, 0x53, 0, 0, 0, 0x08, 0, 0, 0, 0x04, 0x74,0x65,0x73,0x74]);
     test.deepEqual(packet.decode(t), { type: "JOB_CREATED", handle: "test" }, "job created, handle 'test'");
+    test.done();
+};
+
+exports["decode WORK_COMPLETE"] = function (test) {
+        // \0RES-13-12-test-\0-test
+    var t = new Buffer([0, 0x52, 0x45, 0x53, 0, 0, 0, 0x0d, 0, 0, 0, 0x0c, 0x74,0x65,0x73,0x74,0,0x74,0x65,0x73,0x74]);
+    test.deepEqual(packet.decode(t), { type: "WORK_COMPLETE", handle: "test", data: new Buffer([0x74, 0x65, 0x73, 0x74]) }, "work complete, handle 'test', data buffer");
     test.done();
 };
