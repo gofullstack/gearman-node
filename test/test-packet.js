@@ -72,3 +72,10 @@ exports["decode WORK_DATA"] = function (test) {
     test.deepEqual(packet.decode(t), { type: "WORK_DATA", handle: "test", data: new Buffer([0x74, 0x65, 0x73, 0x74]) }, "work data, handle 'test', data buffer");
     test.done();
 };
+
+exports["decode WORK_WARNING"] = function (test) {
+        // \0RES-29-12-test-\0-test
+    var t = new Buffer([0, 0x52, 0x45, 0x53, 0, 0, 0, 29, 0, 0, 0, 0x0c, 0x74,0x65,0x73,0x74,0,0x74,0x65,0x73,0x74]);
+    test.deepEqual(packet.decode(t), { type: "WORK_WARNING", handle: "test", data: new Buffer([0x74, 0x65, 0x73, 0x74]) }, "work warning, handle 'test', data buffer");
+    test.done();
+};
