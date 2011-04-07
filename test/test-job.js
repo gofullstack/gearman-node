@@ -21,7 +21,7 @@ exports["submit"] = function (test) {
 
 exports["event: complete"] = function (test) {
     // reverse_string is from https://github.com/gearman-ruby/gearman-ruby/blob/master/examples/worker_reverse_string.rb
-    var job = new Job({ name: "reverse_string", data: "test", encoding: "utf8" });
+    var job = new Job({ name: "test", data: "test", encoding: "utf8" });
     job.submit();
     job.on("complete", function (result) {
         test.equal("tset", result, "work completes");

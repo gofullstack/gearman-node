@@ -85,6 +85,12 @@ Set up [nodeunit](https://github.com/caolan/nodeunit):
 
     $ npm link
 
+Some of the tests require a live Gearman server running on localhost:4730 (no mock server here, we keep it real.) [Download, install, and run](http://gearman.org/index.php?id=download#gearmand_c) `gearmand`. You can do `brew install gearman` on a Mac with [HomeBrew](http://mxcl.github.com/homebrew/) or `apt-get install gearman-job-server` on Debian-based Linux systems.
+
+A worker used by some of the tests is in the test/fixtures directory. You'll need the `gearman` gem installed and you can run it with:
+
+    ruby test/fixtures/worker.rb &
+
 Run the tests:
 
     $ nodeunit test
