@@ -15,15 +15,13 @@ Only a subset of the features of Gearman are currently implemented.
 Creating a client goes something like this:
 
     var gearman = require("gearman"),
-        myClient = gearman.createClient(4730, "my-gearman-server.example.com");
+        client = gearman.createClient(4730, "my-gearman-server.example.com");
 
     console.log("Sending job...");
-    var job = myClient.submitJob("reverse", "Hello World!", {
-        encoding: "utf8"
-    });
-    job.on("complete", function (data, handle) {
+    var job = client.submitJob("reverse", "Hello World!", { encoding: "utf8" });
+    job.on("complete", function (data) {
         console.log(data);
-        myClient.end();
+        client.end();
     });
 
 This creates a client with a task and a listener for the result.
