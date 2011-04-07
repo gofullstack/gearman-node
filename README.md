@@ -24,7 +24,7 @@ Creating a client goes something like this:
         client.end();
     });
 
-This creates a client with a task and a listener for the result.
+This creates a client with a job and a listener for the result.
 
 You can run this on the command line like so:
 
@@ -38,9 +38,9 @@ Additional Gearman tutorials and help can be found at [Gearman HQ help](http://g
 
 ## API
 
-The gearman module contains methods for creating clients. You can include this module with `require("gearman")`.
+The `gearman` module contains methods for creating clients. You can include this module with `require('gearman')`.
 
-### gearman.createClient([port = 4730], [host = "localhost"])
+### gearman.createClient([port = 4730], [host = 'localhost'])
 
 Creates a new Gearman client. Takes `port` and `host` arguments which default to `localhost:4730`.
 
@@ -69,13 +69,13 @@ An object representing a job that has been submitted. `gearman.Job` instances ar
 
 `function (handle) {}`
 
-Emitted when a job is created. `handle` is the new Job's handle, which is also assigned to the `handle` property of the `gearman.Job` instance.
+Emitted when a job is created. `handle` is the new job's handle, which is also assigned to the `handle` property of the `gearman.Job` instance.
 
 #### Event: 'complete'
 
 `function (result) {}`
 
-Emitted when the job is completed. `result` is the value of the result from the server, either as a `Buffer` or String if `job.encoding` is set.
+Emitted when the job has completed. `result` is the value of the result from the server, either as a `Buffer` or String if `job.encoding` is set.
 
 ## Tests
 
@@ -89,7 +89,7 @@ Some of the tests require a live Gearman server running on localhost:4730 (no mo
 
 A worker used by some of the tests is in the test/fixtures directory. You'll need the `gearman` gem installed and you can run it with:
 
-    ruby test/fixtures/worker.rb &
+    $ ruby test/fixtures/worker.rb &
 
 Run the tests:
 
