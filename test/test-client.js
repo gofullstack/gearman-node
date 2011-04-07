@@ -18,7 +18,7 @@ exports["createClient"] = function (test) {
 
 exports["submitJob"] = function (test) {
     var client = gearman.createClient();
-    test.ok(client.submitJob() instanceof Job, "client.submitJob() creates a job");
+    test.ok(client.submitJob("test") instanceof Job, "client.submitJob() creates a job");
     test.done();
 };
 
