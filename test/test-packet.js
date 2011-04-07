@@ -1,4 +1,4 @@
-var packetTypes = require("../lib/packet-types"),
+var packetTypes = require("../lib/packet/types"),
     packet = require("../lib/packet");
 
 exports["packet-types"] = function (test) {
