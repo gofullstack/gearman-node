@@ -12,19 +12,28 @@ exports["Job"] = function (test) {
 
 exports["submit"] = function (test) {
     var job = new Job({ name: "test" });
-    job.submit();
     job.on("create", function (handle) {
         test.ok(typeof handle === "string", "handle returned on create event");
         test.equal(job.handle, handle, "job handle assigned on create event");
         test.done();
     });
+    job.submit();
+};
+
+exports["event: data"] = function (test) {
+    var job = new Job({ name: "test", encoding: "utf8" });
+    job.on("data", function (result) {
+        test.equal("test", result, "work data sent");
+        test.done();
+    });
+    job.submit();
 };
 
 exports["event: complete"] = function (test) {
     var job = new Job({ name: "test", data: "test", encoding: "utf8" });
-    job.submit();
     job.on("complete", function (result) {
         test.equal("tset", result, "work completes");
         test.done();
     });
+    job.submit();
 };
