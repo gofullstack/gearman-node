@@ -63,7 +63,19 @@ Submits a job to a manager and returns a `gearman.Job`. `data` defaults to a `Bu
 
 ### gearman.Job
 
-An object representing a job that has been submitted. `gearman.Job` instances are EventEmitters.
+An object representing a job that has been submitted. `gearman.Job` instances are EventEmitters with the these events:
+
+#### Event: 'created'
+
+`function (handle) {}`
+
+Emitted when a job is created. `handle` is the new Job's handle, which is also assigned to the `handle` property of the `gearman.Job` instance.
+
+#### Event: 'complete'
+
+`function (result) {}`
+
+Emitted when the job is completed. `result` is the value of the result from the server, either as a `Buffer` or String if `job.encoding` is set.
 
 ## Tests
 
