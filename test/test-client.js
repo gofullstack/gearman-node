@@ -1,29 +1,37 @@
 var gearman = require("gearman"),
     Client = gearman.Client,
-    Job = gearman.Job;
+    Job = gearman.Job,
+    testCase = require("nodeunit").testCase;
 
-exports["createClient"] = function (test) {
-    var client = gearman.createClient();
-    test.ok(client instanceof Client, "gearman.createClient() creates a client");
-    test.equal(client.port, 4730, "default port 4730");
-    test.equal(client.host, "localhost", "default host 'localhost'");
+module.exports = testCase({
+    setUp: function (callback) {
+        this.client = gearman.createClient();
+        callback();
+    },
 
-    client = gearman.createClient(1234, "test");
+    "createClient": function (test) {
+        test.ok(this.client instanceof Client,
+                "gearman.createClient() creates a client");
+        test.equal(this.client.port, 4730, "default port 4730");
+        test.equal(this.client.host, "localhost", "default host 'localhost'");
 
-    test.equal(client.port, 1234, "port argument 1234");
-    test.equal(client.host, "test", "host argument 'test'");
+        var client = gearman.createClient(1234, "test");
 
-    test.done();
-};
+        test.equal(client.port, 1234, "port argument 1234");
+        test.equal(client.host, "test", "host argument 'test'");
 
-exports["submitJob"] = function (test) {
-    var client = gearman.createClient();
-    test.ok(client.submitJob("test") instanceof Job, "client.submitJob() creates a job");
-    test.done();
-};
+        test.done();
+    },
 
-exports["end"] = function (test) {
-    var client = gearman.createClient();
-    test.ok(typeof client.end === "function", "client.end() method exists");
-    test.done();
-};
+    "submitJob": function (test) {
+        test.ok(this.client.submitJob("test") instanceof Job,
+                "client.submitJob() creates a job");
+        test.done();
+    },
+
+    "end": function (test) {
+        test.ok(typeof this.client.end === "function",
+                "client.end() method exists");
+        test.done();
+    }
+});
