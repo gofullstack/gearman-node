@@ -71,11 +71,17 @@ An object representing a job that has been submitted. `gearman.Job` instances ar
 
 Emitted when a job is created. `handle` is the new job's handle, which is also assigned to the `handle` property of the `gearman.Job` instance.
 
-#### Event: 'complete'
+#### Event: 'data'
 
-`function (result) {}`
+`function (data) {}`
 
-Emitted when the job has completed. `result` is the value of the result from the server, either as a `Buffer` or String if `job.encoding` is set.
+Emitted when data for the job is received. `data` is the data sent, as a `Buffer` or as a String if `encoding` was set before the job was submitted.
+
+#### Event: 'warning'
+
+`function (warning) {}`
+
+Same as a `data` event, but should be treated as a warning.
 
 ## Tests
 

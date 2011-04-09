@@ -7,7 +7,11 @@ require 'gearman'
 w = Gearman::Worker.new(['localhost:4730'])
 
 w.add_ability('test') do |data, job|
+  sleep 1
   job.send_data 'test'
+  sleep 1
+  job.report_warning 'test'
+  sleep 1
   data.reverse
 end
 

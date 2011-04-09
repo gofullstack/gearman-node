@@ -27,12 +27,20 @@ module.exports = testCase({
         });
     },
 
-    "event: data": function (test) {
+   "event: data": function (test) {
         job.on("data", function (result) {
             test.equal("test", result, "work data sent");
             test.done();
         });
     },
+
+   "event: warning": function (test) {
+        job.on("warning", function (warning) {
+            test.equal("test", warning, "work warning sent");
+            test.done();
+        });
+    },
+
 
     "event: complete": function (test) {
         job.on("complete", function (result) {
