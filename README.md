@@ -65,7 +65,7 @@ Submits a job to a manager and returns a `gearman.Job`. `data` defaults to a `Bu
 
 An object representing a job that has been submitted. `gearman.Job` instances are EventEmitters with the these events:
 
-#### Event: 'created'
+#### Event: 'create'
 
 `function (handle) {}`
 
@@ -82,6 +82,18 @@ Emitted when data for the job is received. `data` is the data sent, as a `Buffer
 `function (warning) {}`
 
 Same as a `data` event, but should be treated as a warning.
+
+#### Event: 'complete'
+
+`function (data) {}`
+
+Emitted when a job completes. `data` is the data sent, as a `Buffer` or as a String if `encoding` was set before the job was submitted.
+
+#### Event: 'fail'
+
+`function (fail) {}`
+
+Emitted when a job fails.
 
 ## Tests
 
