@@ -6,7 +6,7 @@ var gearman = require("gearman"),
     job = client.submitJob("test", "test", { encoding: "utf8" });
 
 // XXX: These need a real gearman server running on localhost:4730 and
-// fixtures/worker.rb running. Need to make a mock server or something.
+// test/fixtures/worker.rb running. Need to make a mock server or something.
 
 module.exports = testCase({
    "Job": function (test) {

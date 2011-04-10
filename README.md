@@ -95,7 +95,7 @@ Emitted when a job completes. `data` is the data sent, as a `Buffer` or as a Str
 
 #### Event: 'fail'
 
-`function (fail) {}`
+`function () {}`
 
 Emitted when a job fails.
 
@@ -125,7 +125,7 @@ Should be compatible with node 0.4.x.
 
 Thanks to the Gearman community and rest of the [Gearman HQ](http://gearmanhq.com/) team for help and documentation. This module is mostly based on [gearman-ruby](https://github.com/gearman-ruby/gearman-ruby) and [gearman.net](https://launchpad.net/gearman.net).
 
-Thanks to the Node.js community for excellent tools, resources, examples, documentation, and inspiration.
+Thanks to the Node.js community for excellent people, tools, resources, examples, documentation, and inspiration.
 
 ## License
 
