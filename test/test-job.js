@@ -5,8 +5,6 @@ var gearman = require("gearman"),
     client = gearman.createClient(),
     job = client.submitJob("test", "test", { encoding: "utf8" });
 
-gearman.debug = true;
-
 // XXX: These need a real gearman server running on localhost:4730 and
 // fixtures/worker.rb running. Need to make a mock server or something.
 

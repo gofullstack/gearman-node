@@ -11,10 +11,10 @@ module.exports = testCase({
         test.equal(client.port, 4730, "default port 4730");
         test.equal(client.host, "localhost", "default host 'localhost'");
 
-        client = gearman.createClient(1234, "test");
+        client = gearman.createClient(1234, "example.com");
 
         test.equal(client.port, 1234, "port argument 1234");
-        test.equal(client.host, "test", "host argument 'test'");
+        test.equal(client.host, "example.com", "host argument 'example.com'");
 
         test.done();
     },
