@@ -1,6 +1,7 @@
 var gearman = require("gearman"),
     Client = gearman.Client,
     Job = gearman.Job,
+    Socket = require("net").Socket,
     testCase = require("nodeunit").testCase,
     client = gearman.createClient();
 
@@ -16,6 +17,12 @@ module.exports = testCase({
         test.equal(client.port, 1234, "port argument 1234");
         test.equal(client.host, "example.com", "host argument 'example.com'");
 
+        test.done();
+    },
+
+    "getConnection": function (test) {
+        test.ok(client.getConnection() instanceof Socket,
+                "client.getConnection() returns a Socket");
         test.done();
     },
 

@@ -48,6 +48,10 @@ Creates a new Gearman client. Takes `port` and `host` arguments which default to
 
 This is an object with methods to create and manage jobs.
 
+#### client.getConnection()
+
+Creates and sets up a client's connection (an instance of `net.Socket`) if it has not yet been created and returns it.
+
 #### client.end()
 
 Closes the client connections for when you don't need to use the client any more.
