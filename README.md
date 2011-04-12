@@ -34,7 +34,7 @@ You can run this on the command line like so:
 
 ### More
 
-Additional Gearman tutorials and help can be found at [Gearman HQ help](http://gearmanhq.com/help/tutorials/).
+Additional Gearman tutorials and help can be found at [Gearman HQ help](http://gearmanhq.com/help/).
 
 ## API
 
@@ -107,7 +107,7 @@ Set up [nodeunit](https://github.com/caolan/nodeunit):
 
     $ npm link
 
-Some of the tests require a live Gearman server running on localhost:4730 (no mock server here, we keep it real.) [Download, install, and run](http://gearman.org/index.php?id=download#gearmand_c) `gearmand`. You can do `brew install gearman` on a Mac with [HomeBrew](http://mxcl.github.com/homebrew/) or `apt-get install gearman-job-server` on Debian-based Linux systems.
+Some of the tests require a live Gearman server running on localhost:4730 (no mock server here, we keep it real.) [Download, install, and run](http://gearman.org/index.php?id=download#gearmand_c) `gearmand`. You can do `brew install gearman` on a Mac with [HomeBrew](http://mxcl.github.com/homebrew/).
 
 A worker used by some of the tests is in the test/fixtures directory. You'll need the `gearman` gem installed and you can run it with:
 
@@ -117,13 +117,15 @@ Run the tests:
 
     $ nodeunit test
 
-## Node Compatibility
+## Compatibility
 
 Should be compatible with node 0.4.x.
 
+Should work with Gearman 0.20 and [Gearman HQ](http://gearmanhq.com/).
+
 ## Contributors
 
-Thanks to the Gearman community and rest of the [Gearman HQ](http://gearmanhq.com/) team for help and documentation. This module is mostly based on [gearman-ruby](https://github.com/gearman-ruby/gearman-ruby) and [gearman.net](https://launchpad.net/gearman.net).
+Thanks to the Gearman community and rest of the Gearman HQ team for help and documentation. This module is mostly based on [gearman-ruby](https://github.com/gearman-ruby/gearman-ruby) and [gearman.net](https://launchpad.net/gearman.net).
 
 Thanks to the Node.js community for excellent people, tools, resources, examples, documentation, and inspiration.
 
