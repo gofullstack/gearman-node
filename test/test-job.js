@@ -12,10 +12,23 @@ module.exports = testCase({
    "Job": function (test) {
         test.ok(job instanceof EventEmitter,
                 "Job instances are EventEmitters");
+        test.equal("normal", job.priority, "default priority is normal");
         test.done();
     },
 
     "submit": function (test) {
+        job.on("create", function (handle) {
+            test.ok(typeof handle === "string",
+                    "handle returned on create event");
+            test.equal(job.handle, handle,
+                       "job handle assigned on create event");
+            test.done();
+        });
+    },
+
+    "submit { priority: 'high' }": function (test) {
+        var job = client.submitJob("test", "test", { encoding: "utf8",
+                                                     priority: "high" });
         job.on("create", function (handle) {
             test.ok(typeof handle === "string",
                     "handle returned on create event");
