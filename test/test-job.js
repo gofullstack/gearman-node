@@ -50,6 +50,14 @@ module.exports = testCase({
         });
     },
 
+    "submit { priority: 'invalid' }": function (test) {
+        test.throws(function () {
+            var job = client.submitJob("test", "test", { encoding: "utf8",
+                                                         priority: "other" });
+        }, "must have a known priority");
+        test.done();
+    },
+
    "event: data": function (test) {
         job.on("data", function (result) {
             test.equal("test", result, "work data received");
