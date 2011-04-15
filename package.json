@@ -1,6 +1,6 @@
 {
     "name": "gearman",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Client library for Gearman",
     "keywords": ["gearman", "job", "worker", "background"],
     "homepage": "https://github.com/cramerdev/gearman-node",
