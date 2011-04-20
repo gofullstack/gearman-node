@@ -58,6 +58,19 @@ module.exports = testCase({
         test.done();
     },
 
+    "submit { background: true }": function (test) {
+        var job = client.submitJob("test", "test", { encoding: "utf8",
+                                                     background: true });
+
+       job.on("create", function (handle) {
+            test.ok(typeof handle === "string",
+                    "handle returned on create event");
+            test.equal(job.handle, handle,
+                       "job handle assigned on create event");
+            test.done();
+        });
+    },
+
    "event: data": function (test) {
         job.on("data", function (result) {
             test.equal("test", result, "work data received");
