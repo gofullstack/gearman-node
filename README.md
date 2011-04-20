@@ -62,11 +62,14 @@ Submits a job to a manager and returns a `gearman.Job`. `data` defaults to a `Bu
 
 `options` is an object with the following defaults:
 
-    { priority: 'normal',
+    { background: false,
+      priority: 'normal',
       encoding: null
     }
 
 `priority` can be one of `'low'`, `'normal'`, or `'high'`.
+
+If `background` is set to `true`, the job is detached after the `create` event and no further events are emitted.
 
 ### gearman.Job
 

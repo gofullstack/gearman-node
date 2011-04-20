@@ -44,6 +44,14 @@ exports["encode SUBMIT_JOB_LOW"] = function (test) {
     test.done();
 };
 
+exports["encode SUBMIT_JOB_BG"] = function (test) {
+    // \0REQ-SUBMIT_JOB_BG-6-test\0-\0-a/
+    var data = new Buffer([0,0x52,0x45,0x51,0,0,0,18,0,0,0,7,0x74,0x65,0x73,0x74,0,0,0x61]);
+
+    test.deepEqual(packet.encode({ type: "SUBMIT_JOB_BG", name: "test", data: "a", encoding: "utf8" }), data);
+    test.done();
+};
+
 exports["decode"] = function (test) {
         // \0RES
     var headerOnly = new Buffer([0, 0x52, 0x45, 0x53]),
