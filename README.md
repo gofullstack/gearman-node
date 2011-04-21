@@ -105,6 +105,20 @@ Emitted when a job completes. `data` is the data sent, as a `Buffer` or as a Str
 
 Emitted when a job fails.
 
+#### job.getStatus([callback])
+
+For a job that was submitted in the background (with `background: true`), get information about its status. `callback` will be called when the server returns the status, with an object showing status information:
+
+    job.getStatus(function (info) { console.dir(info); });
+
+The `info` object returned can contain the following:
+
+    { handle: String,                   // the job's handle
+      known: Boolean,                   // is the job known?
+      running: Boolean,                 // is the job running?
+      percentComplete: [Number, Number] // Numerator & denominator of percentage complete
+    }
+
 ## Tests
 
 To run the tests:

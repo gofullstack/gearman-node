@@ -127,7 +127,7 @@ exports["decode STATUS_RES"] = function (test) {
         handle: "test",
         known: true,
         running: true,
-        percentComplete: { numerator: 50, denominator: 100 }
+        percentComplete: [50, 100]
     }, "status response");
     test.done();
 };
