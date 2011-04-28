@@ -62,12 +62,14 @@ module.exports = testCase({
         var job = client.submitJob("test", "test", { encoding: "utf8",
                                                      background: true });
 
-       job.on("create", function (handle) {
-            test.ok(typeof handle === "string",
-                    "handle returned on create event");
-            test.equal(job.handle, handle,
-                       "job handle assigned on create event");
-            test.done();
+        job.on("create", function (handle) {
+            job.getStatus(function (status) {
+                test.deepEqual(status, { handle: handle,
+                                         known: true,
+                                         running: true,
+                                         percentComplete: [ 48, 48 ] });
+                test.done();
+            });
         });
     },
 
