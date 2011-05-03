@@ -62,11 +62,18 @@ Submits a job to a manager and returns a `gearman.Job`. `data` defaults to a `Bu
 
 `options` is an object with the following defaults:
 
-    { priority: 'normal',
+    { background: false,
+      priority: 'normal',
       encoding: null
     }
 
 `priority` can be one of `'low'`, `'normal'`, or `'high'`.
+
+If `background` is set to `true`, the job is detached after the `create` event and no further events are emitted.
+
+#### client.getJobStatus(handle, [callback])
+
+Works the same as `job.getStatus` but takes a job handle (assigned previously by the server for a job submitted with `background: true`) and executes a callback taking an object with status information.
 
 ### gearman.Job
 
@@ -101,6 +108,20 @@ Emitted when a job completes. `data` is the data sent, as a `Buffer` or as a Str
 `function () {}`
 
 Emitted when a job fails.
+
+#### job.getStatus([callback])
+
+For a job that was submitted in the background (with `background: true`), get information about its status. `callback` will be called when the server returns the status, with an object showing status information:
+
+    job.getStatus(function (status) { console.dir(status); });
+
+The `status` object returned can contain the following:
+
+    { handle: String,                   // the job's handle
+      known: Boolean,                   // is the job known?
+      running: Boolean,                 // is the job running?
+      percentComplete: [Number, Number] // Numerator & denominator of percentage complete
+    }
 
 ## Tests
 

@@ -2,11 +2,15 @@ var gearman = require("gearman"),
     Job = gearman.Job,
     EventEmitter = require("events").EventEmitter,
     testCase = require("nodeunit").testCase,
-    client = gearman.createClient(),
-    job = client.submitJob("test", "test", { encoding: "utf8" });
+    client, job;
 
 // XXX: These need a real gearman server running on localhost:4730 and
 // test/fixtures/worker.rb running. Need to make a mock server or something.
+
+// gearman.debug = true;
+
+client = gearman.createClient();
+job = client.submitJob("test", "test", { encoding: "utf8" });
 
 module.exports = testCase({
    "Job": function (test) {
@@ -57,6 +61,51 @@ module.exports = testCase({
         }, "must have a known priority");
         test.done();
     },
+
+    "submit { background: true }": function (test) {
+        var job = client.submitJob("test", "test", { background: true });
+
+        job.on("create", function (handle) {
+            job.getStatus(function (status) {
+                test.deepEqual(status, { handle: handle,
+                                         known: true,
+                                         running: true,
+                                         percentComplete: [ 48, 48 ] });
+                test.done();
+            });
+        });
+    },
+
+    "submit { background: true, priority: 'high' }": function (test) {
+        var job = client.submitJob("test", "test", { background: true,
+                                                     priority: "high" });
+
+        job.on("create", function (handle) {
+            job.getStatus(function (status) {
+                test.deepEqual(status, { handle: handle,
+                                         known: true,
+                                         running: true,
+                                         percentComplete: [ 48, 48 ] });
+                test.done();
+            });
+        });
+    },
+
+    "submit { background: true, priority: 'low' }": function (test) {
+        var job = client.submitJob("test", "test", { background: true,
+                                                     priority: "low" });
+
+        job.on("create", function (handle) {
+            job.getStatus(function (status) {
+                test.deepEqual(status, { handle: handle,
+                                         known: true,
+                                         running: true,
+                                         percentComplete: [ 48, 48 ] });
+                test.done();
+            });
+        });
+    },
+
 
    "event: data": function (test) {
         job.on("data", function (result) {
