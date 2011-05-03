@@ -2,11 +2,15 @@ var gearman = require("gearman"),
     Job = gearman.Job,
     EventEmitter = require("events").EventEmitter,
     testCase = require("nodeunit").testCase,
-    client = gearman.createClient(),
-    job = client.submitJob("test", "test", { encoding: "utf8" });
+    client, job;
 
 // XXX: These need a real gearman server running on localhost:4730 and
 // test/fixtures/worker.rb running. Need to make a mock server or something.
+
+// gearman.debug = true;
+
+client = gearman.createClient();
+job = client.submitJob("test", "test", { encoding: "utf8" });
 
 module.exports = testCase({
    "Job": function (test) {
