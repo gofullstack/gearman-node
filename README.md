@@ -73,7 +73,7 @@ If `background` is set to `true`, the job is detached after the `create` event a
 
 #### client.getJobStatus(handle, [callback])
 
-Works the same as `job.getStatus` but takes a job handle (assigned previously by the server for a job submitted with `background: true` and executes a callback taking an object with status information.
+Works the same as `job.getStatus` but takes a job handle (assigned previously by the server for a job submitted with `background: true`) and executes a callback taking an object with status information.
 
 ### gearman.Job
 
