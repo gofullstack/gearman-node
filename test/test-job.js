@@ -62,6 +62,51 @@ module.exports = testCase({
         test.done();
     },
 
+    "submit { background: true }": function (test) {
+        var job = client.submitJob("test", "test", { background: true });
+
+        job.on("create", function (handle) {
+            job.getStatus(function (status) {
+                test.deepEqual(status, { handle: handle,
+                                         known: true,
+                                         running: true,
+                                         percentComplete: [ 48, 48 ] });
+                test.done();
+            });
+        });
+    },
+
+    "submit { background: true, priority: 'high' }": function (test) {
+        var job = client.submitJob("test", "test", { background: true,
+                                                     priority: "high" });
+
+        job.on("create", function (handle) {
+            job.getStatus(function (status) {
+                test.deepEqual(status, { handle: handle,
+                                         known: true,
+                                         running: true,
+                                         percentComplete: [ 48, 48 ] });
+                test.done();
+            });
+        });
+    },
+
+    "submit { background: true, priority: 'low' }": function (test) {
+        var job = client.submitJob("test", "test", { background: true,
+                                                     priority: "low" });
+
+        job.on("create", function (handle) {
+            job.getStatus(function (status) {
+                test.deepEqual(status, { handle: handle,
+                                         known: true,
+                                         running: true,
+                                         percentComplete: [ 48, 48 ] });
+                test.done();
+            });
+        });
+    },
+
+
    "event: data": function (test) {
         job.on("data", function (result) {
             test.equal("test", result, "work data received");
