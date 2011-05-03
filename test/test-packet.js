@@ -52,6 +52,22 @@ exports["encode SUBMIT_JOB_BG"] = function (test) {
     test.done();
 };
 
+exports["encode SUBMIT_JOB_HIGH_BG"] = function (test) {
+    // \0REQ-SUBMIT_JOB_HIGH_BG-7-test\0-\0-a/
+    var data = new Buffer([0,0x52,0x45,0x51,0,0,0,32,0,0,0,7,0x74,0x65,0x73,0x74,0,0,0x61]);
+
+    test.deepEqual(packet.encode({ type: "SUBMIT_JOB_HIGH_BG", name: "test", data: "a", encoding: "utf8" }), data);
+    test.done();
+};
+
+exports["encode SUBMIT_JOB_LOW_BG"] = function (test) {
+    // \0REQ-SUBMIT_JOB_LOW_BG-7-test\0-\0-a/
+    var data = new Buffer([0,0x52,0x45,0x51,0,0,0,34,0,0,0,7,0x74,0x65,0x73,0x74,0,0,0x61]);
+
+    test.deepEqual(packet.encode({ type: "SUBMIT_JOB_LOW_BG", name: "test", data: "a", encoding: "utf8" }), data);
+    test.done();
+};
+
 exports["encode GET_STATUS"] = function (test) {
     // \0REQ-GET_STATUS-5-test\0/
     var data = new Buffer([0,0x52,0x45,0x51,0,0,0,15,0,0,0,4,0x74,0x65,0x73,0x74]);
