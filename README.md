@@ -71,6 +71,10 @@ Submits a job to a manager and returns a `gearman.Job`. `data` defaults to a `Bu
 
 If `background` is set to `true`, the job is detached after the `create` event and no further events are emitted.
 
+#### client.getJobStatus(handle, [callback])
+
+Works the same as `job.getStatus` but takes a job handle (assigned previously by the server for a job submitted with `background: true` and executes a callback taking an object with status information.
+
 ### gearman.Job
 
 An object representing a job that has been submitted. `gearman.Job` instances are EventEmitters with the these events:
