@@ -139,7 +139,7 @@ A worker used by some of the tests is in the test/fixtures directory. You'll nee
 
 Run the tests:
 
-    $ nodeunit test
+    $ npm test
 
 ## Compatibility
 

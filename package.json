@@ -11,5 +11,6 @@
         "url": "https://github.com/cramerdev/gearman-node.git"
     },
     "dependencies": { "binary": ">=0.0.0" },
-    "devDependencies": { "nodeunit": "~0.4" }
+    "devDependencies": { "nodeunit": "~0.4" },
+    "scripts": { "test": "nodeunit test" }
 }
