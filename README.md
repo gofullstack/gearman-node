@@ -1,6 +1,6 @@
 # gearman-node
 
-This module lets you create [Gearman](http://gearman.org/) clients with [Node.js](http://nodejs.org/).
+This module lets you create [Gearman](http://gearman.org/) clients and workers with [Node.js](http://nodejs.org/).
 
 Only a subset of the features of Gearman are currently implemented.
 
@@ -32,6 +32,19 @@ You can run this on the command line like so:
     Sending job...
     !dlroW olleH
 
+### Workers
+
+A worker could look like this:
+
+    var gearman = require("gearman"),
+        worker = gearman.createWorker(4730, "my-gearman-server.example.com");
+
+    worker.on("test", function (data) {
+        // Reverse the Buffer and return a string
+        return data.toString("utf8").split("").reverse().join("");
+    });
+    console.log("Waiting for jobs...");
+
 ### More
 
 Additional Gearman tutorials and help can be found at [Gearman HQ help](http://gearmanhq.com/help/).
@@ -43,6 +56,10 @@ The `gearman` module contains methods for creating clients. You can include this
 ### gearman.createClient([port = 4730], [host = 'localhost'])
 
 Creates a new Gearman client. Takes `port` and `host` arguments which default to `localhost:4730`.
+
+### gearman.createWorker([port = 4730], [host = 'localhost'])
+
+Creates a new Gearman worker. Takes `port` and `host` arguments which default to `localhost:4730`.
 
 ### gearman.Client
 
@@ -77,7 +94,7 @@ Works the same as `job.getStatus` but takes a job handle (assigned previously by
 
 ### gearman.Job
 
-An object representing a job that has been submitted. `gearman.Job` instances are EventEmitters with the these events:
+An object representing a job that has been submitted by a client. `gearman.Job` instances are EventEmitters with the these events:
 
 #### Event: 'create'
 
@@ -122,6 +139,10 @@ The `status` object returned can contain the following:
       running: Boolean,                 // is the job running?
       percentComplete: [Number, Number] // Numerator & denominator of percentage complete
     }
+
+### gearman.Worker
+
+An object representing a worker. `gearman.Worker` instances are EventEmitters. Any event (except `'error'` or `'newListener'`, these are special cases) you add to a worker (with `on`) will be added as a capability of that worker.
 
 ## Tests
 
