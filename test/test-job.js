@@ -7,8 +7,6 @@ var gearman = require("gearman"),
 // XXX: These need a real gearman server running on localhost:4730 and
 // test/fixtures/worker.rb running. Need to make a mock server or something.
 
-// gearman.debug = true;
-
 client = gearman.createClient();
 job = client.submitJob("test", "test", { encoding: "utf8" });
 
@@ -16,6 +14,7 @@ module.exports = testCase({
    "Job": function (test) {
         test.ok(job instanceof EventEmitter,
                 "Job instances are EventEmitters");
+        test.ok(job.id instanceof Buffer, "Job id is a Buffer");
         test.equal("normal", job.priority, "default priority is normal");
         test.done();
     },

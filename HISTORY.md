@@ -1,5 +1,9 @@
 # History
 
+## 0.4.0
+
+* Unique client ids
+
 ## 0.3.0 / 2011-05-02
 
 * Background job support
