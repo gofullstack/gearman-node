@@ -16,55 +16,54 @@ exports["encode"] = function (test) {
 
 exports["encode SUBMIT_JOB"] = function (test) {
     // examples
-    // \0REQ-SUBMIT_JOB-6-test\0-\0/
-    var empty = new Buffer([0,0x52,0x45,0x51,0,0,0,0x7,0,0,0,0x6,0x74,0x65,0x73,0x74,0,0]),
-    // \0REQ-SUBMIT_JOB-7-test\0-\0-a/
-        data = new Buffer([0,0x52,0x45,0x51,0,0,0,0x7,0,0,0,0x7,0x74,0x65,0x73,0x74,0,0,0x61]);
-
-    test.throws(function () { packet.encode({ type: "SUBMIT_JOB" }); }, "job must have a name string");
-    test.deepEqual(packet.encode({ type: "SUBMIT_JOB", name: "test" }), empty);
-    test.deepEqual(packet.encode({ type: "SUBMIT_JOB", name: "test", data: "a", encoding: "utf8" }), data);
-    test.deepEqual(packet.encode({ type: "SUBMIT_JOB", name: "test", data: new Buffer([0x61]) }), data);
+    // \0REQ-SUBMIT_JOB-7-test-\0-1-\0
+    var empty = new Buffer([0,0x52,0x45,0x51,0,0,0,0x7,0,0,0,7,0x74,0x65,0x73,0x74,0,1,0]),
+    // \0REQ-SUBMIT_JOB-8-test-\0-1-\0-a
+        data = new Buffer([0,0x52,0x45,0x51,0,0,0,0x7,0,0,0,8,0x74,0x65,0x73,0x74,0,1,0,0x61]);
+    test.throws(function () { packet.encode({ type: "SUBMIT_JOB", id: null }); }, "job must have a name string");
+    test.deepEqual(packet.encode({ type: "SUBMIT_JOB", name: "test", id: null }), empty);
+    test.deepEqual(packet.encode({ type: "SUBMIT_JOB", name: "test", data: "a", encoding: "utf8", id: null }), data);
+    test.deepEqual(packet.encode({ type: "SUBMIT_JOB", name: "test", data: new Buffer([0x61]), id: null }), data);
     test.done();
 };
 
 exports["encode SUBMIT_JOB_HIGH"] = function (test) {
-    // \0REQ-SUBMIT_JOB_HIGH-7-test\0-\0-a/
-    var data = new Buffer([0,0x52,0x45,0x51,0,0,0,21,0,0,0,7,0x74,0x65,0x73,0x74,0,0,0x61]);
+    // \0REQ-SUBMIT_JOB_HIGH-8-test\0-1-\0-a/
+    var data = new Buffer([0,0x52,0x45,0x51,0,0,0,21,0,0,0,8,0x74,0x65,0x73,0x74,0,1,0,0x61]);
 
-    test.deepEqual(packet.encode({ type: "SUBMIT_JOB_HIGH", name: "test", data: "a", encoding: "utf8" }), data);
+    test.deepEqual(packet.encode({ type: "SUBMIT_JOB_HIGH", name: "test", data: "a", encoding: "utf8", id: null }), data);
     test.done();
 };
 
 exports["encode SUBMIT_JOB_LOW"] = function (test) {
-    // \0REQ-SUBMIT_JOB_LOW-7-test\0-\0-a/
-    var data = new Buffer([0,0x52,0x45,0x51,0,0,0,33,0,0,0,7,0x74,0x65,0x73,0x74,0,0,0x61]);
+    // \0REQ-SUBMIT_JOB_LOW-8-test\0-1-\0-a/
+    var data = new Buffer([0,0x52,0x45,0x51,0,0,0,33,0,0,0,8,0x74,0x65,0x73,0x74,0,1,0,0x61]);
 
-    test.deepEqual(packet.encode({ type: "SUBMIT_JOB_LOW", name: "test", data: "a", encoding: "utf8" }), data);
+    test.deepEqual(packet.encode({ type: "SUBMIT_JOB_LOW", name: "test", data: "a", encoding: "utf8", id: null }), data);
     test.done();
 };
 
 exports["encode SUBMIT_JOB_BG"] = function (test) {
-    // \0REQ-SUBMIT_JOB_BG-7-test\0-\0-a/
-    var data = new Buffer([0,0x52,0x45,0x51,0,0,0,18,0,0,0,7,0x74,0x65,0x73,0x74,0,0,0x61]);
+    // \0REQ-SUBMIT_JOB_BG-8-test\0-1-\0-a/
+    var data = new Buffer([0,0x52,0x45,0x51,0,0,0,18,0,0,0,8,0x74,0x65,0x73,0x74,0,1,0,0x61]);
 
-    test.deepEqual(packet.encode({ type: "SUBMIT_JOB_BG", name: "test", data: "a", encoding: "utf8" }), data);
+    test.deepEqual(packet.encode({ type: "SUBMIT_JOB_BG", name: "test", data: "a", encoding: "utf8", id: null }), data);
     test.done();
 };
 
 exports["encode SUBMIT_JOB_HIGH_BG"] = function (test) {
-    // \0REQ-SUBMIT_JOB_HIGH_BG-7-test\0-\0-a/
-    var data = new Buffer([0,0x52,0x45,0x51,0,0,0,32,0,0,0,7,0x74,0x65,0x73,0x74,0,0,0x61]);
+    // \0REQ-SUBMIT_JOB_HIGH_BG-8-test\0-1-\0-a/
+    var data = new Buffer([0,0x52,0x45,0x51,0,0,0,32,0,0,0,8,0x74,0x65,0x73,0x74,0,1,0,0x61]);
 
-    test.deepEqual(packet.encode({ type: "SUBMIT_JOB_HIGH_BG", name: "test", data: "a", encoding: "utf8" }), data);
+    test.deepEqual(packet.encode({ type: "SUBMIT_JOB_HIGH_BG", name: "test", data: "a", encoding: "utf8", id: null }), data);
     test.done();
 };
 
 exports["encode SUBMIT_JOB_LOW_BG"] = function (test) {
-    // \0REQ-SUBMIT_JOB_LOW_BG-7-test\0-\0-a/
-    var data = new Buffer([0,0x52,0x45,0x51,0,0,0,34,0,0,0,7,0x74,0x65,0x73,0x74,0,0,0x61]);
+    // \0REQ-SUBMIT_JOB_LOW_BG-8-test\0-1-\0-a/
+    var data = new Buffer([0,0x52,0x45,0x51,0,0,0,34,0,0,0,8,0x74,0x65,0x73,0x74,0,1,0,0x61]);
 
-    test.deepEqual(packet.encode({ type: "SUBMIT_JOB_LOW_BG", name: "test", data: "a", encoding: "utf8" }), data);
+    test.deepEqual(packet.encode({ type: "SUBMIT_JOB_LOW_BG", name: "test", data: "a", encoding: "utf8", id: null }), data);
     test.done();
 };
 
@@ -72,7 +71,7 @@ exports["encode GET_STATUS"] = function (test) {
     // \0REQ-GET_STATUS-5-test\0/
     var data = new Buffer([0,0x52,0x45,0x51,0,0,0,15,0,0,0,4,0x74,0x65,0x73,0x74]);
 
-    test.deepEqual(packet.encode({ type: "GET_STATUS", handle: "test" }), data);
+    test.deepEqual(packet.encode({ type: "GET_STATUS", handle: "test", id: null }), data);
     test.done();
 };
 
