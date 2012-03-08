@@ -38,24 +38,22 @@ vows.describe("packet").addBatch({
             },
 
             "job must have a name string": function () {
-                assert.throws(function () {
-                    packet.encode({ type: "SUBMIT_JOB" });
-                });
+                assert.throws(function () { packet.encode({ type: "SUBMIT_JOB" }); });
             },
 
             "has correct data": function (topic) {
                 assert.deepEqual(packet.encode({ type: "SUBMIT_JOB",
                                                  name: "test" }),
-                                 topic.empty);
+                                topic.empty);
                 assert.deepEqual(packet.encode({ type: "SUBMIT_JOB",
                                                  name: "test",
                                                  data: "a",
                                                  encoding: "utf8" }),
-                                 topic.data);
+                                topic.data);
                 assert.deepEqual(packet.encode({ type: "SUBMIT_JOB",
                                                  name: "test",
                                                  data: new Buffer([0x61]) }),
-                                 topic.data);
+                                topic.data);
             }
         }
     }
