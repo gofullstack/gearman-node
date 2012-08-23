@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/cramerdev/gearman-node.png)](http://travis-ci.org/cramerdev/gearman-node)
 # gearman-node
 
 This module lets you create [Gearman](http://gearman.org/) clients with [Node.js](http://nodejs.org/).
