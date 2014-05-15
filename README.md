@@ -1,3 +1,5 @@
+# THIS PROJECT IS NO LONGER MAINTAINED. TRY [gearman-js](https://github.com/mreinstein/gearman-js)!
+
 # gearman-node
 
 This module lets you create [Gearman](http://gearman.org/) clients with [Node.js](http://nodejs.org/).
